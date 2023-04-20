@@ -1,0 +1,60 @@
+﻿@page "/"
+@using CowboyApi.Contracts;
+@using CowboyApi.Models;
+
+
+<div class="grid grid-cols-2 gap-1">
+    
+    <div>
+        <div class="mb-1">
+            <div class="flex flex-col">
+                <label>Name:</label>
+                <input class="border rounded p-1" @bind-value=NewCowboyUsername @bind-value:event="oninput" />
+            </div>
+            <div class="flex flex-col">
+                <label>Password:</label>
+                <input type="password" class="border rounded p-1"  @bind-value="NewCowboyPassword" @bind-value:event="oninput" />
+            </div>
+        </div>
+        <button disabled="@((string.IsNullOrEmpty(NewCowboyUsername) || string.IsNullOrEmpty(NewCowboyPassword)))" class="btn btn-success" @onclick="()=>CreateNewCowboy()">Create Cowboy</button>
+    </div>
+    <div>
+        <label>All the Cowboys</label>
+
+        <ul>
+
+
+        </ul>
+
+    </div>
+
+</div>
+
+@code{
+
+
+    [Inject] ICowboyRepository CowboyRepository { get; set; }
+
+    private string NewCowboyUsername { get; set; }
+
+    private string NewCowboyPassword { get; set; }
+
+
+    private IEnumerable<Cowboy> Cowboys { get; set; }
+
+    private async void CreateNewCowboy()
+    {
+        var result = await CowboyRepository.Create(new UserInfo() { Username = NewCowboyUsername, Password = NewCowboyPassword });
+
+
+    }
+
+    private void DisplayAllCowboys()
+    {
+        
+    }
+
+
+
+
+}
