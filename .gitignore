@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CowboyApi/.vs
+/CowboyApi/CowboyApi/bin/Debug/net7.0
+/CowboyApi/CowboyApi/obj
+/CowboyApi/CowboyApiTest/bin/Debug/net7.0
+/CowboyApi/CowboyApiTest/obj
+/CowboyApi/CowboyClient/bin/Debug/net7.0
+/CowboyApi/CowboyClient/node_modules
+/CowboyApi/CowboyClient/obj
+/CowboyApi/CowboyClientLib/bin/Debug/net7.0
+/CowboyApi/CowboyClientLib/obj
