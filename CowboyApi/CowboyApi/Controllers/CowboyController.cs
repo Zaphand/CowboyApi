@@ -41,10 +41,11 @@ namespace CowboyApi.Controllers
                 HashedPassword = hashedPass,
             };
 
-            _context.PassKeys.Add(newPassKey);
             _context.Cowboys.Add(cowboy);
-            
+            _context.PassKeys.Add(newPassKey);
             await _context.SaveChangesAsync();
+
+            
             return cowboy;
         }
 

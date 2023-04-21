@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -33,6 +34,9 @@ namespace CowboyClientLib.Services
 		public async Task<Cowboy> Create(UserInfo userInfo)
 		{
 			var message = new HttpRequestMessage(HttpMethod.Post, "/Cowboy/Create");
+			message.Content = new StringContent(JsonConvert.SerializeObject(userInfo));
+
+			message.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
 			var response = await _client.SendAsync(message);
 
@@ -43,8 +47,9 @@ namespace CowboyClientLib.Services
 
 			var jsonContent = await response.Content.ReadAsStringAsync();
 
+			var data = JsonConvert.DeserializeObject<Cowboy>(jsonContent);
 
-            return JsonConvert.DeserializeObject<Cowboy>(jsonContent);
+            return data ?? default;
 		}
 
 		public Task<IEnumerable<Cowboy>> List()
