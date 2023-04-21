@@ -1,18 +1,6 @@
 using CowboyApi.Classes;
 using CowboyApi.Context;
-using CowboyApi.Controllers;
-using CowboyApi.Models;
 using CowboyApi.Services;
-using Microsoft.Extensions.DependencyInjection;
-
-using System.Net;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Configuration;
 using Microsoft.AspNetCore.Authentication;
 
 internal class Program
@@ -52,7 +40,8 @@ internal class Program
             "Tokens",
             options =>
             {
-                
+
+
             }
         );
 
@@ -69,7 +58,7 @@ internal class Program
         }
 
         app.UseCors();
-        
+
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
@@ -84,7 +73,7 @@ internal class Program
 
     public static T Resolve<T>()
     {
-        return ServiceProvider.GetService<T>(); 
+        return ServiceProvider.GetService<T>();
     }
 
 }
